@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Top Up Roblox murah dan cepat di NowieStore. Robux harga terbaik, proses fast.">
+  <title>Top Up Roblox — NowieStore</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka+One&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #fff0f5; color: #3a1a2e; font-family: 'Nunito', sans-serif; min-height: 100vh; overflow-x: hidden; }
+
+    .game-hero { position: relative; padding: clamp(2rem,5vw,3rem) clamp(1rem,4vw,2rem) clamp(1.5rem,4vw,2rem); text-align: center; background: linear-gradient(160deg, #ffe4f0, #ffd6e8, #fce4ff); overflow: hidden; }
+    .game-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 50% 0%, rgba(255,50,50,0.08) 0%, transparent 70%); pointer-events: none; }
+    .back-btn { position: absolute; top: 1rem; left: clamp(1rem,4vw,2rem); display: flex; align-items: center; gap: 0.4rem; color: #c07090; text-decoration: none; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700; transition: color 0.2s; }
+    .back-btn:hover { color: #d42075; }
+    .game-hero-icon { width: 88px; height: 88px; border-radius: 22px; background: #fff; border: 2px solid rgba(212,32,117,0.2); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; box-shadow: 0 4px 20px rgba(212,32,117,0.12); overflow: hidden; }
+    .game-hero-icon img { width: 100%; height: 100%; object-fit: cover; }
+    .game-hero h1 { font-family: 'Fredoka One', cursive; font-size: clamp(1.6rem,5vw,2.3rem); font-weight: 400; color: #d42075; margin-bottom: 0.4rem; }
+    .game-hero-sub { font-size: 0.85rem; color: #a0547a; }
+    .game-hero-sub span { color: #e03030; font-weight: 700; }
+
+    .how-section { max-width: 620px; margin: 0 auto; padding: 1.5rem clamp(1rem,4vw,1.5rem) 0.5rem; }
+    .how-steps { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; }
+    .how-step { display: flex; align-items: center; gap: 0.45rem; background: #fff; border: 1.5px solid rgba(212,32,117,0.12); border-radius: 2rem; padding: 0.38rem 0.85rem; font-size: 0.71rem; color: #a0547a; font-weight: 600; }
+    .how-step-num { width: 18px; height: 18px; border-radius: 50%; background: rgba(212,32,117,0.1); color: #d42075; font-size: 0.65rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+    /* ACCORDION */
+    .section { max-width: 620px; margin: 0 auto; padding: 1.5rem clamp(1rem,4vw,1.5rem) 0.5rem; }
+    .cat-list { display: flex; flex-direction: column; gap: 0.65rem; }
+
+    .cat-item { background: #fff; border: 2px solid rgba(212,32,117,0.1); border-radius: 16px; overflow: hidden; box-shadow: 0 2px 10px rgba(212,32,117,0.06); transition: border-color 0.2s; }
+    .cat-item.open { border-color: rgba(212,32,117,0.3); }
+
+    .cat-header { display: flex; align-items: center; gap: 0.85rem; padding: 0.85rem 1rem; cursor: pointer; user-select: none; transition: background 0.15s; }
+    .cat-header:hover { background: rgba(212,32,117,0.03); }
+
+    .cat-logo { width: 46px; height: 46px; border-radius: 12px; overflow: hidden; background: #ffe4f0; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; border: 1.5px solid rgba(212,32,117,0.1); }
+    .cat-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+    .cat-info { flex: 1; }
+    .cat-name { font-family: 'Fredoka One', cursive; font-size: 1rem; font-weight: 400; color: #3a1a2e; }
+    .cat-count { font-size: 0.68rem; color: #c07090; font-weight: 600; margin-top: 0.1rem; }
+
+    .cat-arrow { width: 28px; height: 28px; border-radius: 50%; background: rgba(212,32,117,0.08); display: flex; align-items: center; justify-content: center; color: #d42075; font-size: 1rem; flex-shrink: 0; transition: transform 0.25s, background 0.2s; }
+    .cat-item.open .cat-arrow { transform: rotate(180deg); background: rgba(212,32,117,0.15); }
+
+    .cat-packages { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .cat-item.open .cat-packages { max-height: 1200px; }
+
+    /* GRID */
+    .pkg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.6rem; padding: 0 0.85rem 0.85rem; }
+    @media (max-width: 340px) { .pkg-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .pkg-card { background: #fff0f5; border: 1.5px solid rgba(212,32,117,0.12); border-radius: 12px; padding: 0.75rem 0.6rem; cursor: pointer; text-align: center; transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s; }
+    .pkg-card:hover { transform: translateY(-2px); border-color: rgba(212,32,117,0.4); box-shadow: 0 4px 14px rgba(212,32,117,0.12); }
+    .pkg-card:active { transform: translateY(0); }
+
+    .pkg-amount { font-family: 'Fredoka One', cursive; font-size: 1.1rem; color: #e03030; line-height: 1; margin-bottom: 0.2rem; display: flex; align-items: center; justify-content: center; gap: 0.3rem; }
+    .pkg-amount img { width: 15px; height: 15px; object-fit: contain; }
+    .pkg-unit { font-size: 0.65rem; color: #c07090; margin-bottom: 0.55rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 0.25rem; }
+    .pkg-unit img { width: 13px; height: 13px; object-fit: contain; }
+    .pkg-price { font-family: 'Fredoka One', cursive; font-size: 0.92rem; color: #d42075; }
+    .pkg-wa-icon { display: block; margin: 0.55rem auto 0; width: 20px; height: 20px; opacity: 0.35; transition: opacity 0.2s; }
+    .pkg-card:hover .pkg-wa-icon { opacity: 1; }
+
+    /* NOTES */
+    .notes-box { max-width: 620px; margin: 0 auto; padding: 0 clamp(1rem,4vw,1.5rem) 1.5rem; }
+    .notes-inner { background: #fff; border: 1.5px solid rgba(212,32,117,0.12); border-left: 3px solid #d42075; border-radius: 12px; padding: 1rem 1.1rem; font-size: 0.78rem; color: #a0547a; line-height: 1.9; }
+    .notes-inner strong { color: #d42075; display: block; margin-bottom: 0.4rem; font-size: 0.82rem; }
+    .note-hi { color: #d42075; font-weight: 700; }
+
+    .loading { text-align: center; padding: 2rem; color: #c07090; font-size: 0.85rem; }
+    .loading-spinner { display: inline-block; width: 24px; height: 24px; border: 3px solid rgba(212,32,117,0.2); border-top-color: #d42075; border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 0.5rem; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .cat-item { animation: fadeUp 0.3s ease both; }
+    .cat-item:nth-child(1) { animation-delay: 0.03s; } .cat-item:nth-child(2) { animation-delay: 0.06s; }
+    .cat-item:nth-child(3) { animation-delay: 0.09s; } .cat-item:nth-child(4) { animation-delay: 0.12s; }
+    .cat-item:nth-child(5) { animation-delay: 0.15s; }
+  </style>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<section class="game-hero">
+  <a href="https://nowiestore.github.io/" class="back-btn">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+    Kembali
+  </a>
+  <div class="game-hero-icon">
+    <img src="https://nowiestore.github.io/roblox.png" alt="Roblox" onerror="this.style.display='none';this.parentElement.innerHTML='🟥'">
+  </div>
+  <h1>Roblox</h1>
+  <p class="game-hero-sub">Top Up <span>Robux</span> — Proses Fast & Harga Terjangkau</p>
+</section>
+
+<div class="how-section">
+  <div class="how-steps">
+    <div class="how-step"><span class="how-step-num">1</span> Pilih kategori</div>
+    <div class="how-step"><span class="how-step-num">2</span> Pilih paket → WA terbuka</div>
+    <div class="how-step"><span class="how-step-num">3</span> Kirim username Roblox</div>
+    <div class="how-step"><span class="how-step-num">4</span> Bayar & Robux masuk ✓</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="cat-list" id="roblox-list">
+    <div class="loading"><div class="loading-spinner"></div><br>Memuat harga...</div>
+  </div>
+</div>
+
+<div class="notes-box">
+  <div class="notes-inner">
+    <strong>📋 Catatan Penting</strong>
+    ⤿ Proses <span class="note-hi">fast</span> jika tidak ada kendala<br>
+    ⤿ <span class="note-hi">Wajib pakai kode backup</span> saat transaksi<br>
+    ⤿ Pastikan username Roblox kamu sudah benar sebelum mengirim
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<script>
+  var WA = '6281293106630';
+  var SHEETS_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS6RDxQnVchW-gUX1lbrh9HkaQrltB7RzBGZJPyPaPZwwJ-aIxzxkxMgI-ERyksOMvTUaGUjRtxCiGf/pub?gid=872398556&single=true&output=csv';
+  var ROBUX_IMG = '<img src="https://nowiestore.github.io/robux.png" alt="" style="width:15px;height:15px;object-fit:contain;">';
+  var WA_SVG = '<svg class="pkg-wa-icon" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>';
+
+  // Label & logo per kategori — tambah di sini kalau ada kategori baru
+  var KATEGORI_INFO = {
+    'x80':  { label: 'Kelipatan 80',  logo: 'https://nowiestore.github.io/robux.png', emoji: '🟥' },
+    'x500': { label: 'Kelipatan 500', logo: 'https://nowiestore.github.io/robux.png', emoji: '🟥' },
+  };
+
+  function getKatInfo(key) {
+    if (KATEGORI_INFO[key]) return KATEGORI_INFO[key];
+    // Kategori tidak dikenal — capitalize otomatis
+    var label = key.charAt(0).toUpperCase() + key.slice(1).replace(/-/g, ' ');
+    return { label: label, logo: 'https://nowiestore.github.io/robux.png', emoji: '🟥' };
+  }
+
+  function parseCSV(text) {
+    var lines = text.trim().split('\n');
+    var headers = lines[0].split(',');
+    return lines.slice(1).map(function(line) {
+      var vals = line.split(',');
+      var obj = {};
+      headers.forEach(function(h, i) { obj[h.trim()] = (vals[i] || '').trim(); });
+      return obj;
+    });
+  }
+
+  function formatRupiah(num) { return 'Rp ' + parseInt(num).toLocaleString('id-ID'); }
+
+  function buildRoblox(data) {
+    var robloxData = data.filter(function(r) { return r.halaman === 'roblox'; });
+
+    // Kumpulkan semua kategori unik, urutan: x80, x500, lalu sisanya
+    var urutan = ['x80', 'x500'];
+    var semuaKat = [];
+    robloxData.forEach(function(r) {
+      if (semuaKat.indexOf(r.kategori) === -1) semuaKat.push(r.kategori);
+    });
+    var sorted = urutan.filter(function(k) { return semuaKat.indexOf(k) !== -1; });
+    semuaKat.forEach(function(k) { if (sorted.indexOf(k) === -1) sorted.push(k); });
+
+    var container = document.getElementById('roblox-list');
+    container.innerHTML = '';
+
+    sorted.forEach(function(katKey) {
+      var pkgs = robloxData.filter(function(r) { return r.kategori === katKey; });
+      if (pkgs.length === 0) return;
+
+      // Sort termurah ke termahal
+      pkgs.sort(function(a, b) { return parseInt(a.harga) - parseInt(b.harga); });
+
+      var info = getKatInfo(katKey);
+      var item = document.createElement('div');
+      item.className = 'cat-item';
+
+      var header = document.createElement('div');
+      header.className = 'cat-header';
+      header.innerHTML =
+        '<div class="cat-logo"><img src="' + info.logo + '" alt="" onerror="this.style.display=\'none\';this.parentElement.innerHTML=\'' + info.emoji + '\'"></div>' +
+        '<div class="cat-info"><div class="cat-name">' + info.label + '</div><div class="cat-count">' + pkgs.length + ' paket tersedia</div></div>' +
+        '<div class="cat-arrow">▾</div>';
+
+      var panel = document.createElement('div');
+      panel.className = 'cat-packages';
+
+      var grid = document.createElement('div');
+      grid.className = 'pkg-grid';
+
+      pkgs.forEach(function(pkg) {
+        var card = document.createElement('div');
+        card.className = 'pkg-card';
+        var waMsg = encodeURIComponent(
+          'Halo NowieStore, saya mau top up Roblox:\n' +
+          '• Paket: ' + pkg.paket + '\n' +
+          '• Harga: ' + formatRupiah(pkg.harga) + '\n' +
+          '• Username Roblox: [isi username]\n\nMohon bantuannya, terima kasih!'
+        );
+        card.innerHTML =
+          '<div class="pkg-amount">' + ROBUX_IMG + pkg.paket.replace(' Robux','') + '</div>' +
+          '<div class="pkg-unit">' + ROBUX_IMG + 'Robux</div>' +
+          '<div class="pkg-price">' + formatRupiah(pkg.harga) + '</div>' + WA_SVG;
+        card.addEventListener('click', function(e) {
+          e.stopPropagation();
+          window.open('https://wa.me/' + WA + '?text=' + waMsg, '_blank');
+        });
+        grid.appendChild(card);
+      });
+
+      panel.appendChild(grid);
+      item.appendChild(header);
+      item.appendChild(panel);
+
+      header.addEventListener('click', function() {
+        var isOpen = item.classList.contains('open');
+        container.querySelectorAll('.cat-item.open').forEach(function(el) { el.classList.remove('open'); });
+        if (!isOpen) item.classList.add('open');
+      });
+
+      container.appendChild(item);
+    });
+
+    if (container.children.length === 0) {
+      container.innerHTML = '<p style="color:#d42075;font-size:0.8rem;padding:1rem;">Tidak ada data tersedia.</p>';
+    }
+  }
+
+  fetch(SHEETS_CSV + '&t=' + Date.now())
+    .then(function(r) { return r.text(); })
+    .then(function(text) { buildRoblox(parseCSV(text)); })
+    .catch(function() {
+      document.getElementById('roblox-list').innerHTML = '<p style="color:#d42075;font-size:0.8rem;padding:1rem;">Gagal memuat harga. Silakan refresh halaman.</p>';
+    });
+
+  function loadComponent(id, url) {
+    fetch(url).then(r => r.text()).then(html => {
+      document.getElementById(id).innerHTML = html;
+      document.getElementById(id).querySelectorAll('script').forEach(function(s) {
+        var ns = document.createElement('script'); ns.textContent = s.textContent; document.body.appendChild(ns);
+      });
+    }).catch(function() {
+      if (id === 'header-placeholder') document.getElementById(id).innerHTML = '<div style="height:62px;background:#fff0f5;border-bottom:2px solid rgba(212,32,117,0.12);display:flex;align-items:center;padding:0 1.5rem;font-family:Fredoka One,cursive;color:#d42075;font-size:1.3rem;">🌸 NowieStore</div>';
+    });
+  }
+  loadComponent('header-placeholder', 'https://nowiestore.github.io/header.html');
+  loadComponent('footer-placeholder', 'https://nowiestore.github.io/footer.html');
+</script>
+</body>
+</html>
